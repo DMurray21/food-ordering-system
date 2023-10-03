@@ -1,0 +1,24 @@
+package com.food.ordering.system.service.domain;
+
+import com.food.ordering.system.service.domain.dto.message.PaymentResponse;
+import com.food.ordering.system.service.domain.ports.input.messagelistener.payment.PaymentResponseMessageListener;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
+@Service
+@Validated
+@Slf4j
+public class PaymentResponseMessageListenerImpl implements PaymentResponseMessageListener {
+
+
+    @Override
+    public void paymentCompleted(PaymentResponse paymentResponse) {
+
+    }
+
+    @Override
+    public void paymentCancelled(PaymentResponse paymentResponse) {
+
+    }
+}
