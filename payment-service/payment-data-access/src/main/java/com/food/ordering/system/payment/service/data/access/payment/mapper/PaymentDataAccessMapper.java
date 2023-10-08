@@ -3,7 +3,7 @@ package com.food.ordering.system.payment.service.data.access.payment.mapper;
 import com.food.ordering.system.domain.valueobject.CustomerId;
 import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.domain.valueobject.OrderId;
-import com.food.ordering.system.payment.service.dataaccess.payment.entity.PaymentEntity;
+import com.food.ordering.system.payment.service.data.access.payment.entity.PaymentEntity;
 import com.food.ordering.system.payment.service.domain.entity.Payment;
 import com.food.ordering.system.payment.service.domain.valueobject.PaymentId;
 import org.springframework.stereotype.Component;
@@ -23,8 +23,8 @@ public class PaymentDataAccessMapper {
     }
 
     public Payment paymentEntityToPayment(PaymentEntity paymentEntity) {
-        return Payment.builder()
-                .paymentId(new PaymentId(paymentEntity.getId()))
+        return Payment.Builder.builder()
+                .id(new PaymentId(paymentEntity.getId()))
                 .customerId(new CustomerId(paymentEntity.getCustomerId()))
                 .orderId(new OrderId(paymentEntity.getOrderId()))
                 .price(new Money(paymentEntity.getPrice()))

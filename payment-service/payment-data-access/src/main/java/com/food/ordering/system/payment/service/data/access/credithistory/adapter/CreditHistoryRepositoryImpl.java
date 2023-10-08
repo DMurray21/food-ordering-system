@@ -1,9 +1,9 @@
 package com.food.ordering.system.payment.service.data.access.credithistory.adapter;
 
 import com.food.ordering.system.domain.valueobject.CustomerId;
-import com.food.ordering.system.payment.service.dataaccess.credithistory.entity.CreditHistoryEntity;
-import com.food.ordering.system.payment.service.dataaccess.credithistory.mapper.CreditHistoryDataAccessMapper;
-import com.food.ordering.system.payment.service.dataaccess.credithistory.repository.CreditHistoryJpaRepository;
+import com.food.ordering.system.payment.service.data.access.credithistory.entity.CreditHistoryEntity;
+import com.food.ordering.system.payment.service.data.access.credithistory.mapper.CreditHistoryDataAccessMapper;
+import com.food.ordering.system.payment.service.data.access.credithistory.repository.CreditHistoryJpaRepository;
 import com.food.ordering.system.payment.service.domain.entity.CreditHistory;
 import com.food.ordering.system.payment.service.domain.ports.output.repository.CreditHistoryRepository;
 import org.springframework.stereotype.Component;

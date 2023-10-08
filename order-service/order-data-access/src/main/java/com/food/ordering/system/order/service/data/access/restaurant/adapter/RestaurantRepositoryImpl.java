@@ -1,7 +1,7 @@
 package com.food.ordering.system.order.service.data.access.restaurant.adapter;
 
+import com.food.ordering.system.data.access.restaurant.repository.RestaurantJpaRepository;
 import com.food.ordering.system.order.service.data.access.restaurant.mapper.RestaurantDataMapper;
-import com.food.ordering.system.order.service.data.access.restaurant.repository.RestaurantJpaRepository;
 import com.food.ordering.system.order.service.domain.entity.Restaurant;
 import com.food.ordering.system.service.domain.ports.output.repository.RestaurantRepository;
 import org.springframework.stereotype.Component;

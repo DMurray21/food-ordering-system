@@ -1,6 +1,6 @@
 package com.food.ordering.system.payment.service.data.access.credithistory.repository;
 
-import com.food.ordering.system.payment.service.dataaccess.credithistory.entity.CreditHistoryEntity;
+import com.food.ordering.system.payment.service.data.access.credithistory.entity.CreditHistoryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

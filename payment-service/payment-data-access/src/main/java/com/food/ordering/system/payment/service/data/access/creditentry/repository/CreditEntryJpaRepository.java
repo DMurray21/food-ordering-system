@@ -1,6 +1,6 @@
 package com.food.ordering.system.payment.service.data.access.creditentry.repository;
 
-import com.food.ordering.system.payment.service.dataaccess.creditentry.entity.CreditEntryEntity;
+import com.food.ordering.system.payment.service.data.access.creditentry.entity.CreditEntryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
