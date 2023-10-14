@@ -26,6 +26,7 @@ public class RestaurantDomainServiceImpl implements RestaurantDomainService{
         }
 
         log.info("Order could not be validated {}", restaurant.getOrderDetail().getId().getValue());
+        restaurant.constructOrderApproval(OrderApprovalStatus.REJECTED);
         return new OrderRejectedEvent(restaurant.getOrderApproval(), restaurant.getId(), failureMessages, ZonedDateTime.now(ZoneOffset.UTC), orderRejectedEventDomainEventPublisher);
     }
 }

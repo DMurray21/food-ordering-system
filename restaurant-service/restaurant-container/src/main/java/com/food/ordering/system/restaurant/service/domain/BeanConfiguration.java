@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfiguration {
 
     @Bean
-    public OrderDomainService orderDomainService() {
-        return new OrderDomainServiceImpl();
+    public RestaurantDomainService orderDomainService() {
+        return new RestaurantDomainServiceImpl();
     }
 }

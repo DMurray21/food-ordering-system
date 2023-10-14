@@ -47,7 +47,7 @@ public class Order extends AggregateRoot<OrderId> {
     }
 
     public void cancel(List<String> failureMessages) {
-        if(!OrderStatus.PENDING.equals(orderStatus) || !OrderStatus.CANCELLING.equals(orderStatus)) {
+        if(!(OrderStatus.PENDING.equals(orderStatus) || !OrderStatus.CANCELLING.equals(orderStatus))) {
             throw new OrderDomainException("Order must be in either a pending or cancelling status to be cancelled.");
         }
 
@@ -70,6 +70,7 @@ public class Order extends AggregateRoot<OrderId> {
 
     public void initializeOrder() {
         setId(new OrderId(UUID.randomUUID()));
+        trackingId = new TrackingId(UUID.randomUUID());
         orderStatus = OrderStatus.PENDING;
         initializeOrderItems();
     }
