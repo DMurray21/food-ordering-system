@@ -5,9 +5,11 @@ import com.food.ordering.system.kafka.order.avro.model.OrderApprovalStatus;
 import com.food.ordering.system.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
 import com.food.ordering.system.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
 import com.food.ordering.system.kafka.order.avro.model.RestaurantOrderStatus;
+import com.food.ordering.system.order.service.domain.exception.OrderNotFoundException;
 import com.food.ordering.system.order.service.messaging.mapper.OrderMessagingDataMapper;
 import com.food.ordering.system.service.domain.ports.input.messagelistener.restaurantapproval.RestaurantApprovalResponseMessageListener;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
@@ -44,12 +46,18 @@ public class RestaurantApprovalResponseKafkaListener implements KafkaConsumer<Re
         );
 
         messages.forEach(r -> {
-            if(OrderApprovalStatus.APPROVED == r.getOrderApprovalStatus()) {
-                log.info("Processing approved order for order id: {}", r.getOrderId());
-                restaurantApprovalResponseMessageListener.orderApproved(orderMessagingDataMapper.approvalResponseAvroToApprovalResponse(r));
-            } else if(OrderApprovalStatus.REJECTED == r.getOrderApprovalStatus()) {
-                log.error("Failed to process order {}", r.getOrderId());
-                restaurantApprovalResponseMessageListener.orderRejected(orderMessagingDataMapper.approvalResponseAvroToApprovalResponse(r));
+            try {
+                if(OrderApprovalStatus.APPROVED == r.getOrderApprovalStatus()) {
+                    log.info("Processing approved order for order id: {}", r.getOrderId());
+                    restaurantApprovalResponseMessageListener.orderApproved(orderMessagingDataMapper.approvalResponseAvroToApprovalResponse(r));
+                } else if(OrderApprovalStatus.REJECTED == r.getOrderApprovalStatus()) {
+                    log.error("Failed to process order {}", r.getOrderId());
+                    restaurantApprovalResponseMessageListener.orderRejected(orderMessagingDataMapper.approvalResponseAvroToApprovalResponse(r));
+                }
+            } catch (OptimisticLockingFailureException e) {
+                log.error("Caught optimistic locking exception in RestaurantApprovalResponseMessageListener for order id: {}", r.getOrderId());
+            } catch (OrderNotFoundException e) {
+                log.error("No order found for order id: {}", r.getOrderId());
             }
         });
     }

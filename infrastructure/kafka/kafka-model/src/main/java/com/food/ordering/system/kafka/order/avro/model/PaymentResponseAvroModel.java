@@ -5,12 +5,12 @@
  */
 package com.food.ordering.system.kafka.order.avro.model;
 
-import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
-import org.apache.avro.util.Utf8;
 import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
+
+import java.time.Instant;
 
 @org.apache.avro.specific.AvroGenerated
 public class PaymentResponseAvroModel extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
@@ -722,7 +722,7 @@ public class PaymentResponseAvroModel extends org.apache.avro.specific.SpecificR
       * @param value The value of 'createdAt'.
       * @return This builder.
       */
-    public com.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel.Builder setCreatedAt(long value) {
+    public com.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel.Builder setCreatedAt(Instant value) {
       validate(fields()[6], value);
       this.createdAt = value;
       fieldSetFlags()[6] = true;
